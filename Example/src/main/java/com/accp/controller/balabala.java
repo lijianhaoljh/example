@@ -2,6 +2,6 @@ package com.accp.controller;
 
 public class balabala {
 	public static void main(String[] args) {
-		System.out.println("小彭");
+		System.out.println("小彭小彭可爱爆棚");
 	}
 }
