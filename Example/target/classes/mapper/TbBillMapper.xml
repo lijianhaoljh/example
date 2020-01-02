@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.TbBillMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.TbBill" >
+    <id column="billno" property="billno" jdbcType="VARCHAR" />
+    <result column="billdate" property="billdate" jdbcType="DATE" />
+    <result column="suppliername" property="suppliername" jdbcType="VARCHAR" />
+    <result column="supplieraddress" property="supplieraddress" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="warehouse" property="warehouse" jdbcType="VARCHAR" />
+    <result column="buyer" property="buyer" jdbcType="VARCHAR" />
+    <result column="executor" property="executor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    billno, billdate, suppliername, supplieraddress, department, warehouse, buyer, executor
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.TbBillExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_bill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_bill
+    where billno = #{billno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_bill
+    where billno = #{billno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.TbBillExample" >
+    delete from tb_bill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.TbBill" >
+    insert into tb_bill (billno, billdate, suppliername, 
+      supplieraddress, department, warehouse, 
+      buyer, executor)
+    values (#{billno,jdbcType=VARCHAR}, #{billdate,jdbcType=DATE}, #{suppliername,jdbcType=VARCHAR}, 
+      #{supplieraddress,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{warehouse,jdbcType=VARCHAR}, 
+      #{buyer,jdbcType=VARCHAR}, #{executor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.TbBill" >
+    insert into tb_bill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        billno,
+      </if>
+      <if test="billdate != null" >
+        billdate,
+      </if>
+      <if test="suppliername != null" >
+        suppliername,
+      </if>
+      <if test="supplieraddress != null" >
+        supplieraddress,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="warehouse != null" >
+        warehouse,
+      </if>
+      <if test="buyer != null" >
+        buyer,
+      </if>
+      <if test="executor != null" >
+        executor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="billdate != null" >
+        #{billdate,jdbcType=DATE},
+      </if>
+      <if test="suppliername != null" >
+        #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="supplieraddress != null" >
+        #{supplieraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouse != null" >
+        #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer != null" >
+        #{buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="executor != null" >
+        #{executor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.TbBillExample" resultType="java.lang.Integer" >
+    select count(*) from tb_bill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_bill
+    <set >
+      <if test="record.billno != null" >
+        billno = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billdate != null" >
+        billdate = #{record.billdate,jdbcType=DATE},
+      </if>
+      <if test="record.suppliername != null" >
+        suppliername = #{record.suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplieraddress != null" >
+        supplieraddress = #{record.supplieraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warehouse != null" >
+        warehouse = #{record.warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyer != null" >
+        buyer = #{record.buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.executor != null" >
+        executor = #{record.executor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_bill
+    set billno = #{record.billno,jdbcType=VARCHAR},
+      billdate = #{record.billdate,jdbcType=DATE},
+      suppliername = #{record.suppliername,jdbcType=VARCHAR},
+      supplieraddress = #{record.supplieraddress,jdbcType=VARCHAR},
+      department = #{record.department,jdbcType=VARCHAR},
+      warehouse = #{record.warehouse,jdbcType=VARCHAR},
+      buyer = #{record.buyer,jdbcType=VARCHAR},
+      executor = #{record.executor,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.TbBill" >
+    update tb_bill
+    <set >
+      <if test="billdate != null" >
+        billdate = #{billdate,jdbcType=DATE},
+      </if>
+      <if test="suppliername != null" >
+        suppliername = #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="supplieraddress != null" >
+        supplieraddress = #{supplieraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouse != null" >
+        warehouse = #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer != null" >
+        buyer = #{buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="executor != null" >
+        executor = #{executor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where billno = #{billno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.TbBill" >
+    update tb_bill
+    set billdate = #{billdate,jdbcType=DATE},
+      suppliername = #{suppliername,jdbcType=VARCHAR},
+      supplieraddress = #{supplieraddress,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      warehouse = #{warehouse,jdbcType=VARCHAR},
+      buyer = #{buyer,jdbcType=VARCHAR},
+      executor = #{executor,jdbcType=VARCHAR}
+    where billno = #{billno,jdbcType=VARCHAR}
+  </update>
+</mapper>
