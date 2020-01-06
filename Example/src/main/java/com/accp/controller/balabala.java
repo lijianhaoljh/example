@@ -2,6 +2,6 @@ package com.accp.controller;
 
 public class balabala {
 	public static void main(String[] args) {
-		System.out.println("╨б┼э╨б┼э┐╔░о▒м┼я");
+		System.out.println("ргргргргргргргргрг▒ж▒ж");
 	}
 }
